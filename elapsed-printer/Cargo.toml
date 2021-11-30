@@ -1,7 +1,13 @@
 [package]
 name = "elapsed-printer"
 version = "0.1.0"
+authors = ["baku4 <bahkhun@gmail.com>"]
 edition = "2021"
+description = "Very simple macro for printing time elapsed to execute a function"
+readme = "README.md"
+repository = "https://github.com/baku4/elapsed-printer/"
+license = "MIT"
+keywords = ["time", "elapsed"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
