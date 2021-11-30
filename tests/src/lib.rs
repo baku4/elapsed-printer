@@ -126,3 +126,30 @@ mod tests {
         print_when_feature_1_or_2_or_3(10);
     }
 }
+
+#[cfg(test)]
+mod docs {
+    use elapsed_printer::print_elapsed;
+    use std::time::Duration;
+    use std::thread;
+
+    #[print_elapsed]
+    fn function_name_1() {
+        thread::sleep(Duration::from_millis(10));
+    }
+    #[print_elapsed(stdout, ns)]
+    fn function_name_2() {
+        //
+    }
+    #[print_elapsed(stdout, us)]
+    fn function_name_3() {
+        function_name_1()
+    }
+
+    #[test]
+    fn test_doc_code() {
+        function_name_1();
+        function_name_2();
+        function_name_3();
+    }
+}
