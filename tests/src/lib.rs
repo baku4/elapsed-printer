@@ -1,5 +1,5 @@
-// #![allow(dead_code)]
-// #![allow(unused_imports)]
+#![allow(dead_code)]
+#![allow(unused_imports)]
 use elapsed_printer::print_elapsed;
 use std::time::Duration;
 
