@@ -1,5 +1,5 @@
-use elapsed_printer_macros::test_macro;
-use std::time::{Duration, Instant};
+use elapsed_printer_macros::print_elapsed;
+use std::time::{Duration};
 
 #[cfg(test)]
 mod tests {
@@ -13,27 +13,27 @@ mod tests {
     }
 
     impl<T> TestStruct<T> {
-        #[test_macro(stdout, "t")]
+        #[print_elapsed([test_feature, a])]
         fn new() -> Self {
             Self {
                 test_field: 10,
                 pd: PhantomData,
             }
         }
-        #[test_macro]
+        #[print_elapsed([test_feature, aa])]
         pub fn sleep_millis_method(&self, millis: u64) -> u64 {
             let millis = Duration::from_millis(millis);
             thread::sleep(millis);
             10
         }
-        #[test_macro]
+        #[print_elapsed]
         fn sleep_millis_function(millis: u64) {
             let millis = Duration::from_millis(millis);
             thread::sleep(millis);
         }
     }
 
-    #[test_macro]
+    #[print_elapsed]
     fn sleep_millis(millis: u64) {
         let millis = Duration::from_millis(millis);
         thread::sleep(millis);
@@ -41,22 +41,19 @@ mod tests {
 
     #[test]
     fn print_time() {
-        let start = Instant::now();
-
         // Function
+        #[cfg(test_feature)]
+        println!("TEST TEST FEATUREs1");
+        #[cfg(any(feature = "test_feature", feature = "a"))]
+        println!("TEST TEST FEATUREs2");
+
         sleep_millis(10);
-        let duration = start.elapsed();
-        println!("Function: {:?}", duration);
 
         // Method in Struct
         let test_struct: TestStruct<usize> = TestStruct::new();
         test_struct.sleep_millis_method(10);
-        let duration = start.elapsed();
-        println!("Method in Struct: {:?}", duration);
 
         // Function in Struct
         TestStruct::<usize>::sleep_millis_function(10);
-        let duration = start.elapsed();
-        println!("Function in Struct: {:?}", duration);
     }
 }

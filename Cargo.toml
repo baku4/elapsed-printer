@@ -7,4 +7,7 @@ edition = "2021"
 
 [dependencies]
 elapsed-printer-macros = { path = "macros" }
-quote = "1.0.10"
+
+[features]
+test_feature = []
+a = []
