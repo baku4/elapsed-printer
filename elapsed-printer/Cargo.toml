@@ -1,5 +1,5 @@
 [package]
-name = "elapsed-printer-macros"
+name = "elapsed-printer"
 version = "0.1.0"
 edition = "2021"
 
@@ -9,7 +9,6 @@ edition = "2021"
 proc-macro = true
 
 [dependencies]
-# syn = "1.0.82"
 syn = { version = "1.0.82", features = ["full"] }
 proc-macro2 = "1.0.32"
 quote = "1.0.10"
