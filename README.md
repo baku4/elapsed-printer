@@ -81,7 +81,6 @@ fn main() {
     function_name_1();
     function_name_2();
     function_name_3();
-    function_name_1();
 }
 ```
 Output
